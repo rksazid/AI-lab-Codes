@@ -13,7 +13,7 @@ parent(jamesI,elizabeth).
 
 parent(charlesI,catherine).
 parent(charlesI,charlesII).
-parent(charlesI,camesII).
+parent(charlesI,jamesII).
 
 parent(elizabeth,sophia).
 
@@ -41,4 +41,10 @@ brother(X,Y) :-  male(X),parent(Somebody,X),parent(Somebody,Y), X \= Y.
 
 sister(X,Y) :- female(X),parent(Par,X),parent(Par,Y), X \= Y.
 
+uncle(X,Y) :- brother(X,Par),parent(Par,Y).
 
+cousin(X,Y) :- uncle(Unc , X),father(Unc,Y).
+
+aunt(X,Y) :- female(X),sister(X,Mom),mother(Mom,Y).
+
+aunt(X,Y) :- female(X),sister(X,Dad),father(Dad,Y).
